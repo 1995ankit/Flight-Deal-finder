@@ -1,10 +1,6 @@
 import requests
 import os
 
-
-
-
-
 class DataManager:
     def __init__(self):
         self.sheety_endpoint = os.environ.get('sheety_endpoint')
