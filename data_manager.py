@@ -2,9 +2,7 @@ import requests
 import os
 
 
-# sheety_endpoint = https://api.sheety.co/2de1bb8eccea47d7b39476252352b2f3/ankitFlightPlanning/prices
-# sheety_bearer_token = Bearer nf543jknjkg943nl32win34
-# Paste this in run->edit_Confirgurations->environment variables
+
 
 
 class DataManager:
