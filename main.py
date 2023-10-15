@@ -7,13 +7,13 @@ from flight_data import FlightData
 from twilio.rest import Client
 from data_manager import DataManager
 
-# TWILIO_sid = os.environ.get('TWILIO_sid')
-# TWILIO_auth_token = os.environ.get('TWILIO_auth_token')
-# client = Client(TWILIO_sid, TWILIO_auth_token)
+TWILIO_sid = os.environ.get('TWILIO_sid')
+TWILIO_auth_token = os.environ.get('TWILIO_auth_token')
+client = Client(TWILIO_sid, TWILIO_auth_token)
 
-# data = DataManager().load_and_save_sheet()
-# with open("cities_info.pkl", 'wb') as file:
-#     pickle.dump(data, file)
+data = DataManager().load_and_save_sheet()
+with open("cities_info.pkl", 'wb') as file:
+    pickle.dump(data, file)
 
 with open('cities_info.pkl', 'rb') as f:
     sheet_data = pickle.load(f)
@@ -37,21 +37,21 @@ def fill_iata(sheet_data):
         }
         requests.put(url=f"{put_url}{row_id}", json=put_param, headers=sheety_headers)
         row_id += 1
-# fill_iata(sheet_data)
+fill_iata(sheet_data)
 
 # Printing minimum flight price for every city in the list
 
-# for city_info in sheet_data:
-#     flight_data = FlightData(city_info['iataCode']).get_flight_data()
-#     if (flight_data['price']) < (city_info['lowestPrice']):
-#         article = f"Low price alert! Only INR{flight_data['price']} to fly from {flight_data['cityFrom']} to " \
-#                   f"{flight_data['cityTo']} from {flight_data['local_departure'].split('T')[0]} for " \
-#                   f"{flight_data['nightsInDest']} days"
-#
-#         message = client.messages.create(
-#             body=article,
-#             from_='+17408428638',
-#             to='+918981329207'
-#         )
+for city_info in sheet_data:
+    flight_data = FlightData(city_info['iataCode']).get_flight_data()
+    if (flight_data['price']) < (city_info['lowestPrice']):
+        article = f"Low price alert! Only INR{flight_data['price']} to fly from {flight_data['cityFrom']} to " \
+                  f"{flight_data['cityTo']} from {flight_data['local_departure'].split('T')[0]} for " \
+                  f"{flight_data['nightsInDest']} days"
+
+        message = client.messages.create(
+            body=article,
+            from_='twillio provided number',
+            to='your contact'
+        )
 
 
