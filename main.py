@@ -7,9 +7,6 @@ from flight_data import FlightData
 from twilio.rest import Client
 from data_manager import DataManager
 
-# TWILIO_sid = ACb4eb9540de8a41721e203ca459f0ed6a;
-# TWILIO_auth_token = c75500bef84e566ca75df11555e4cf99
-
 # TWILIO_sid = os.environ.get('TWILIO_sid')
 # TWILIO_auth_token = os.environ.get('TWILIO_auth_token')
 # client = Client(TWILIO_sid, TWILIO_auth_token)
